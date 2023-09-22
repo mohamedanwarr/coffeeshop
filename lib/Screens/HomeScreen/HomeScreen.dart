@@ -45,7 +45,7 @@ class HomeScreen extends StatelessWidget {
                               color: Myconstants.darkColor,
                              fontWeight: FontWeight.w400),
                         )),
-                    Positioned(
+                    const Positioned(
                         right: 20,
                         top: 32,
                         child:PopMenu() ),
@@ -85,7 +85,7 @@ class PopMenu extends StatelessWidget {
         items: List.generate(MenuButtons.items.length * 2 - 1, (index) {
           if (index.isOdd) {
             // Return a divider for odd indices
-            return DropdownMenuItem<Divider>(enabled: false, child: Divider(
+            return const DropdownMenuItem<Divider>(enabled: false, child: Divider(
               endIndent: 0,
               indent: 0,
 
@@ -99,7 +99,7 @@ class PopMenu extends StatelessWidget {
               child: Row(
                 children: [
                   Icon(item.icon),
-                  SizedBox(width: 30),
+                  const SizedBox(width: 30),
                   Text(item.text)
                 ],
               ), // Replace with your item widget
@@ -113,7 +113,7 @@ class PopMenu extends StatelessWidget {
           width: 190,
           padding: const EdgeInsets.symmetric(vertical: 0),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(topLeft: Radius.circular(30),bottomLeft:Radius.circular(30) ),
+            borderRadius: const BorderRadius.only(topLeft: Radius.circular(30),bottomLeft:Radius.circular(30) ),
             color: Myconstants.whiteColor,
           ),
           offset: const Offset(0, 8),
