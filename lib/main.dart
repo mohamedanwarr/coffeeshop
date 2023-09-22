@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 
 import 'Providers/LoginandSignuproviders.dart';
 import 'Providers/MainScreenProviders.dart';
-import 'Screens/WelcomeScreen/WelcomeScreen.dart';
+import 'Utilies/AppState.dart' show AuthWrapper;
 import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -37,7 +37,7 @@ class CoffeeShop extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: const WelcomeScreen(),
+      home: const AuthWrapper(),
     );
   }
 }

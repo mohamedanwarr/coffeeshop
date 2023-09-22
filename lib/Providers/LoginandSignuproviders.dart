@@ -9,6 +9,7 @@ class LoginandSignup extends ChangeNotifier {
   final auth.FirebaseAuth _firebaseAuth = auth.FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   bool islogin = false;
+  bool _isloading = false;
   String title = "Enjoy the\ndrink coffee";
 
   void isLoginSelected(bool showtextfiled) {
@@ -35,22 +36,26 @@ class LoginandSignup extends ChangeNotifier {
       );
     }
   }
+  bool get isloading => _isloading;
+
+  void loading() {
+    _isloading = true;
+    notifyListeners();
+  }
 
   Stream<User?> get user {
     return _firebaseAuth.authStateChanges().map(_userfromFirebase);
   }
 
   //Login
-  Future<User?> loginWithEmailAndPassword(String email,
-      String password,) async {
+  Future<User?> loginWithEmailAndPassword(String email, String password,) async {
     final auth.UserCredential credential = await _firebaseAuth
         .signInWithEmailAndPassword(email: email, password: password);
 
     return _userfromFirebase(credential.user);
   }
 
-  Future<User?> createsignupWithEmailAndPassword(String email,
-      String password,) async {
+  Future<User?> createsignupWithEmailAndPassword(String email, String password,) async {
     final auth.UserCredential credential = await _firebaseAuth
         .createUserWithEmailAndPassword(email: email, password: password);
 
@@ -73,6 +78,7 @@ class LoginandSignup extends ChangeNotifier {
     return null;
   }
   Future<void> signOut() async {
-    return _firebaseAuth.signOut();
+    return _firebaseAuth.signOut().then((value) => null);
+
 }
 }

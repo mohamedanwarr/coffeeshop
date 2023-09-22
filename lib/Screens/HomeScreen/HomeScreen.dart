@@ -2,17 +2,20 @@ import 'package:coffeeshop/constants/Constants.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_flutter/icons_flutter.dart';
+import 'package:provider/provider.dart';
 
+import '../../Providers/LoginandSignuproviders.dart';
 import '../../Utilies/ListMenuButton.dart';
+import '../LoginandSignup/Authcinyicate.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final logout = Provider.of<LoginandSignup>(context, listen: true);
     return Scaffold(
       backgroundColor: Myconstants.darkColor,
-
       body: Stack(
         children: [
           Positioned(
@@ -20,15 +23,15 @@ class HomeScreen extends StatelessWidget {
               right: 0,
               left: 0,
               child: Container(
-                width:double.infinity,
+                width: double.infinity,
                 height: 210,
                 decoration: BoxDecoration(
-                    color: Myconstants.activeColor,
+                  color: Myconstants.activeColor,
                 ),
                 child: Stack(
                   children: [
                     Positioned(
-                      left: 30,
+                        left: 30,
                         top: 40,
                         child: Icon(
                           FlutterIcons.search_mdi,
@@ -43,12 +46,9 @@ class HomeScreen extends StatelessWidget {
                           style: TextStyle(
                               fontSize: 18,
                               color: Myconstants.darkColor,
-                             fontWeight: FontWeight.w400),
+                              fontWeight: FontWeight.w400),
                         )),
-                    Positioned(
-                        right: 20,
-                        top: 32,
-                        child:PopMenu() ),
+                    const Positioned(right: 20, top: 32, child: PopMenu()),
                     Positioned(
                         left: 30,
                         top: 80,
@@ -61,7 +61,6 @@ class HomeScreen extends StatelessWidget {
                         )),
                   ],
                 ),
-
               ))
         ],
       ),
@@ -78,18 +77,20 @@ class PopMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return DropdownButtonHideUnderline(
       child: DropdownButton2(
-      customButton:  Icon(FlutterIcons.menu_ent,
-      size: 35,
-      color: Myconstants.darkColor,
-      ),
+        customButton: Icon(
+          FlutterIcons.menu_ent,
+          size: 35,
+          color: Myconstants.darkColor,
+        ),
         items: List.generate(MenuButtons.items.length * 2 - 1, (index) {
           if (index.isOdd) {
             // Return a divider for odd indices
-            return DropdownMenuItem<Divider>(enabled: false, child: Divider(
-              endIndent: 0,
-              indent: 0,
-
-            ));
+            return const DropdownMenuItem<Divider>(
+                enabled: false,
+                child: Divider(
+                  endIndent: 0,
+                  indent: 0,
+                ));
           } else {
             // Return a custom widget for even indices (actual items)
             final itemIndex = index ~/ 2;
@@ -99,7 +100,7 @@ class PopMenu extends StatelessWidget {
               child: Row(
                 children: [
                   Icon(item.icon),
-                  SizedBox(width: 30),
+                  const SizedBox(width: 30),
                   Text(item.text)
                 ],
               ), // Replace with your item widget
@@ -113,14 +114,16 @@ class PopMenu extends StatelessWidget {
           width: 190,
           padding: const EdgeInsets.symmetric(vertical: 0),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(topLeft: Radius.circular(30),bottomLeft:Radius.circular(30) ),
+            borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(30), bottomLeft: Radius.circular(30)),
             color: Myconstants.whiteColor,
           ),
           offset: const Offset(0, 8),
         ),
         menuItemStyleData: MenuItemStyleData(
           height: 20,
-          customHeights: List.generate(MenuButtons.items.length * 2 - 1, (index) {
+          customHeights:
+              List.generate(MenuButtons.items.length * 2 - 1, (index) {
             if (index.isOdd) {
               return 4; // Height of the divider
             } else {
@@ -129,9 +132,7 @@ class PopMenu extends StatelessWidget {
           }),
           padding: const EdgeInsets.only(left: 25, right: 16),
         ),
-
       ),
-
     );
   }
 }

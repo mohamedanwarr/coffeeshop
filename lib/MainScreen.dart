@@ -1,10 +1,10 @@
+// ignore_for_file: file_names
+
 import 'package:coffeeshop/Screens/FavoraiteScreen/FavoraitePage.dart';
 import 'package:coffeeshop/constants/Constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:icons_flutter/icons_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
 
 import 'Componant/BottomNavigation.dart';
 import 'Providers/MainScreenProviders.dart';

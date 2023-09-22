@@ -37,67 +37,82 @@ class _loginandsignupState extends State<loginandsignup> {
     _passwordController.dispose();
   }
 
-  // void _handlelogin(BuildContext context) async {
-  //   if (_formKey.currentState!.validate()) {
-  //     showDialog(
-  //         context: context,
-  //         builder: (context) {
-  //           return Center(
-  //             child: LoadingAnimationWidget.discreteCircle(
-  //                 color: Myconstants.darkColor,
-  //                 secondRingColor: Myconstants.activeColor,
-  //
-  //                 size: 40),
-  //           );
-  //         });
-  //     try {
-  //       final authentication =
-  //           Provider.of<LoginandSignup>(context, listen: false);
-  //      final user= await authentication.loginWithEmailAndPassword(
-  //           _emailController.text, _passwordController.text);
-  //       Navigator.pop(context);
-  //       if(user!=null) {
-  //         Navigator.of(context).pushReplacement(
-  //             MaterialPageRoute(builder: (context) => const MainScreen()));
-  //         SnacBar.showmessage('Successfully signup', isuccess: true);
-  //       }
-  //     }   catch (e) {
-  //       Navigator.pop(context);
-  //       SnacBar.showmessage("$e", isuccess: false);
-  //     }
-  //   }
-  // }
-  // void _handelSignup(BuildContext context)async {
-  //   if (_formKey.currentState!.validate()) {
-  //     showDialog(
-  //         context: context,
-  //         builder: (context) {
-  //           return Center(
-  //             child: LoadingAnimationWidget.discreteCircle(
-  //                 color: Myconstants.darkColor,
-  //                 secondRingColor: Myconstants.activeColor,
-  //
-  //                 size: 40),
-  //           );
-  //         });
-  //     try {
-  //       final authentication =
-  //           Provider.of<LoginandSignup>(context, listen: false);
-  //       final user=await authentication.createsignupWithEmailAndPassword(
-  //           _emailController.text, _passwordController.text);
-  //       Navigator.pop(context);
-  //       if(user!=null) {
-  //         Navigator.of(context).pushReplacement(
-  //             MaterialPageRoute(builder: (context) => const MainScreen()));
-  //         SnacBar.showmessage('Successfully signup', isuccess: true);
-  //       }
-  //     }catch (e) {
-  //       Navigator.pop(context);
-  //       SnacBar.showmessage("$e", isuccess: false);
-  //
-  //     }
-  //   }
-  // }
+  void _handlelogin(BuildContext context) async {
+    final getmessage = Provider.of<LoginandSignup>(context,listen: false);
+
+    if (!showtextfiled) {
+    return getmessage.isLoginSelected(showtextfiled=true); //
+    } else if (_formKey.currentState!.validate()) {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return Center(
+            child: LoadingAnimationWidget.discreteCircle(
+              color: Myconstants.darkColor,
+              secondRingColor: Myconstants.activeColor,
+              size: 40,
+            ),
+          );
+        },
+      );
+      try {
+        final authentication =
+            Provider.of<LoginandSignup>(context, listen: false);
+       final user= await authentication.loginWithEmailAndPassword(
+            _emailController.text, _passwordController.text);
+        Navigator.pop(context);
+        if(user!=null) {
+          Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => const MainScreen()));
+          SnacBar.showmessage('Successfully Login ', isuccess: true);
+        }else{
+          SnacBar.showmessage("no Found that account ", isuccess: false);
+        }
+      }   catch (e) {
+        Navigator.pop(context);
+        SnacBar.showmessage("no Found that account ", isuccess: false);
+      }
+    }
+  }
+  void _handelSignup(BuildContext context)async {
+    final getmessage = Provider.of<LoginandSignup>(context,listen: false);
+
+    if (!showtextfiled) {
+      // Show text fields when the button is pressed
+      getmessage.issignupSelected(showtextfiled=true);
+    } else if (_formKey.currentState!.validate()) {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return Center(
+            child: LoadingAnimationWidget.discreteCircle(
+              color: Myconstants.darkColor,
+              secondRingColor: Myconstants.activeColor,
+              size: 40,
+            ),
+          );
+        },
+      );
+      try {
+        final authentication =
+            Provider.of<LoginandSignup>(context, listen: false);
+        final user=await authentication.createsignupWithEmailAndPassword(
+            _emailController.text, _passwordController.text);
+        Navigator.pop(context);
+        if(user!=null) {
+          Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => const MainScreen()));
+          SnacBar.showmessage('Successfully signup', isuccess: true);
+        }else{
+          SnacBar.showmessage(" The email address is already in use by another account.", isuccess: false,);
+        }
+      }catch (e) {
+        Navigator.pop(context);
+        SnacBar.showmessage("$e", isuccess: false);
+
+      }
+    }
+  }
   @override
   Widget build(BuildContext context) {
     final getmessage = Provider.of<LoginandSignup>(context);
@@ -154,7 +169,7 @@ class _loginandsignupState extends State<loginandsignup> {
                               FormBuilderValidators.numeric(),
                               FormBuilderValidators.integer(),
                               FormBuilderValidators.min(6),
-                              FormBuilderValidators.max(20),
+
                             ]),
                           ),
                         ],
@@ -166,12 +181,8 @@ class _loginandsignupState extends State<loginandsignup> {
               right: 40,
               child: GestureDetector(
                 onTap: () {
-                  getmessage.isLoginSelected(showtextfiled = true);
-                  // _handlelogin(context);
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const MainScreen()));
+                  _handlelogin(context);
+
                 },
                 child: CustomeButton(
                   width: width,
@@ -192,8 +203,8 @@ class _loginandsignupState extends State<loginandsignup> {
               right: 40,
               child: GestureDetector(
                 onTap: () {
-                  getmessage.issignupSelected(showtextfiled = true);
-                  // _handelSignup(context);
+                  _handelSignup(context);
+
                 },
                 child: CustomeButton(
                   width: width,
