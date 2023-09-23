@@ -2,7 +2,6 @@
 
 
 
-import 'package:coffeeshop/Providers/MainScreenProviders.dart';
 import 'package:coffeeshop/Utilies/snackbar.dart';
 import 'package:coffeeshop/constants/Constants.dart';
 import 'package:flutter/cupertino.dart';
