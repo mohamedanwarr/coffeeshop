@@ -16,14 +16,16 @@ class SnacBar {
       backgroundColor: Colors.transparent,
       elevation: 0,
       content: AwesomeSnackbarContent(
+
         inMaterialBanner: true,
-        titleFontSize: 12,
+        titleFontSize: 15,
         messageFontSize: 12,
-        title: 'On Snap!',
+       title: isuccess?'Congratulation':'On Snap!',
         message: text,
         contentType: isuccess ? ContentType.success : ContentType.failure,
         color: isuccess? Myconstants.activeColor:Myconstants.darkColor,
       ),
+
       duration: const Duration(milliseconds: 4000),
     );
     messagekey.currentState!

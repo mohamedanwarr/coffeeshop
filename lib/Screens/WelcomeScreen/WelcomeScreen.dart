@@ -48,13 +48,10 @@ class WelcomeScreen extends StatelessWidget {
             child: GestureDetector(
               onTap: (){
                 Navigator.push(context,PageTransition(
-                  child: loginandsignup(), type: PageTransitionType.rightToLeft,
-                  duration: Duration(milliseconds:
+                  child: const loginandsignup(), type: PageTransitionType.rightToLeft,
+                  duration: const Duration(milliseconds:
                   200),
                 ));
-
-
-
               },
               child: CustomeButton(
                 width: width*.8,

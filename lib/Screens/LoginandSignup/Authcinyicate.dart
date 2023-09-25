@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 import '../../Componant/CustomeButton.dart';
@@ -29,7 +29,6 @@ class _loginandsignupState extends State<loginandsignup> {
 
   bool showtextfiled = false;
 
-
   @override
   void dispose() {
     super.dispose();
@@ -38,81 +37,101 @@ class _loginandsignupState extends State<loginandsignup> {
   }
 
   void _handlelogin(BuildContext context) async {
-    final getmessage = Provider.of<LoginandSignup>(context,listen: false);
+    final getmessage = Provider.of<LoginandSignup>(context, listen: false);
 
     if (!showtextfiled) {
-    return getmessage.isLoginSelected(showtextfiled=true); //
+      return getmessage.isLoginSelected(showtextfiled = true); //
     } else if (_formKey.currentState!.validate()) {
       showDialog(
         context: context,
         builder: (context) {
-          return Center(
-            child: LoadingAnimationWidget.discreteCircle(
-              color: Myconstants.darkColor,
-              secondRingColor: Myconstants.activeColor,
-              size: 40,
-            ),
-          );
+          return FutureBuilder(
+              future: Future.delayed(const Duration(seconds: 8)),
+              builder: (ctx, timer) {
+                return Center(
+                    child: LottieBuilder.asset(
+                  'Assets/Images/animation_lmyrijnt.json',
+                  width: 100,
+                  height: 100,
+                )
+                    // LoadingAnimationWidget.discreteCircle(
+                    //   color: Myconstants.darkColor,
+                    //   secondRingColor: Myconstants.activeColor,
+                    //   size: 40,
+                    // ),
+                    );
+              });
         },
       );
       try {
         final authentication =
             Provider.of<LoginandSignup>(context, listen: false);
-       final user= await authentication.loginWithEmailAndPassword(
+        final user = await authentication.loginWithEmailAndPassword(
             _emailController.text, _passwordController.text);
-        Navigator.pop(context);
-        if(user!=null) {
-          Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => const MainScreen()));
-          SnacBar.showmessage('Successfully Login ', isuccess: true);
-        }else{
+
+        if (user != null) {
+          Future.delayed(const Duration(seconds: 8), () {
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => const MainScreen()));
+            SnacBar.showmessage('Successfully Login ', isuccess: true);
+          });
+        } else {
           SnacBar.showmessage("no Found that account ", isuccess: false);
         }
-      }   catch (e) {
+      } catch (e) {
         Navigator.pop(context);
-        SnacBar.showmessage("no Found that account ", isuccess: false);
+        SnacBar.showmessage("$e", isuccess: false);
       }
     }
   }
-  void _handelSignup(BuildContext context)async {
-    final getmessage = Provider.of<LoginandSignup>(context,listen: false);
+
+  void _handelSignup(BuildContext context) async {
+    final getmessage = Provider.of<LoginandSignup>(context, listen: false);
 
     if (!showtextfiled) {
       // Show text fields when the button is pressed
-      getmessage.issignupSelected(showtextfiled=true);
+      getmessage.issignupSelected(showtextfiled = true);
     } else if (_formKey.currentState!.validate()) {
       showDialog(
         context: context,
         builder: (context) {
-          return Center(
-            child: LoadingAnimationWidget.discreteCircle(
-              color: Myconstants.darkColor,
-              secondRingColor: Myconstants.activeColor,
-              size: 40,
-            ),
-          );
+          return FutureBuilder(
+              future: Future.delayed(const Duration(seconds: 8)),
+              builder: (ctx, timer) {
+                return Center(
+                    child: LottieBuilder.asset(
+                  'Assets/Images/animation_lmyrijnt.json',
+                  width: 100,
+                  height: 100,
+                ));
+              });
         },
       );
       try {
         final authentication =
             Provider.of<LoginandSignup>(context, listen: false);
-        final user=await authentication.createsignupWithEmailAndPassword(
+        final user = await authentication.createsignupWithEmailAndPassword(
             _emailController.text, _passwordController.text);
-        Navigator.pop(context);
-        if(user!=null) {
-          Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => const MainScreen()));
-          SnacBar.showmessage('Successfully signup', isuccess: true);
-        }else{
-          SnacBar.showmessage(" The email address is already in use by another account.", isuccess: false,);
+
+        if (user != null) {
+          Future.delayed(const Duration(seconds: 8), () {
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => const MainScreen()));
+            SnacBar.showmessage('Successfully signup', isuccess: true);
+          });
+        } else {
+          SnacBar.showmessage(
+            " The email address is already in use by another account.",
+            isuccess: false,
+          );
         }
-      }catch (e) {
+      } catch (e) {
         Navigator.pop(context);
         SnacBar.showmessage("$e", isuccess: false);
-
       }
     }
   }
+
   @override
   Widget build(BuildContext context) {
     final getmessage = Provider.of<LoginandSignup>(context);
@@ -169,7 +188,6 @@ class _loginandsignupState extends State<loginandsignup> {
                               FormBuilderValidators.numeric(),
                               FormBuilderValidators.integer(),
                               FormBuilderValidators.min(6),
-
                             ]),
                           ),
                         ],
@@ -182,7 +200,6 @@ class _loginandsignupState extends State<loginandsignup> {
               child: GestureDetector(
                 onTap: () {
                   _handlelogin(context);
-
                 },
                 child: CustomeButton(
                   width: width,
@@ -204,7 +221,6 @@ class _loginandsignupState extends State<loginandsignup> {
               child: GestureDetector(
                 onTap: () {
                   _handelSignup(context);
-
                 },
                 child: CustomeButton(
                   width: width,
