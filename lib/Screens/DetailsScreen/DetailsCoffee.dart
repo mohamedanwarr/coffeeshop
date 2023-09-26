@@ -1,11 +1,14 @@
 // ignore_for_file: file_names
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:coffeeshop/Providers/FavroateProviders.dart';
 import 'package:coffeeshop/constants/Constants.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_flutter/icons_flutter.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:provider/provider.dart';
 
+import '../../Componant/CustomeButton.dart';
 import '../../Componant/CustomeMenu.dart';
 import '../../Models/ProductsModel.dart';
 
@@ -18,6 +21,7 @@ class DetailsCoffee extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
+    final getfavor = Provider.of<favor>(context);
     return Scaffold(
         resizeToAvoidBottomInset: false,
         body: Center(
@@ -26,7 +30,7 @@ class DetailsCoffee extends StatelessWidget {
               top: 0,
               child: Container(
                 width: width,
-                height: 90,
+                height: MediaQuery.of(context).size.height * 0.20,
                 decoration: BoxDecoration(
                     shape: BoxShape.rectangle,
                     color: Myconstants.activeColor,
@@ -72,8 +76,8 @@ class DetailsCoffee extends StatelessWidget {
               left: 0,
               top: 90,
               child: Container(
-                width: 0,
-                height: 280,
+                width: double.infinity,
+                height: MediaQuery.of(context).size.height * 0.34,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                       // ignore: non_constant_identifier_names, avoid_types_as_parameter_names
@@ -96,7 +100,7 @@ class DetailsCoffee extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Container(
                       width: width,
-                      height: 490,
+                      height: MediaQuery.of(context).size.height * 0.60,
                       decoration: BoxDecoration(
                           color: Myconstants.darkColor,
                           borderRadius: const BorderRadius.only(
@@ -127,9 +131,13 @@ class DetailsCoffee extends StatelessWidget {
                               child: Row(
                                 children: [
                                   IconButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        getfavor.toggleFavorite(coffee);
+                                      },
                                       icon: Icon(
-                                        FlutterIcons.favorite_border_mdi,
+                                        getfavor.isFavorite(coffee)
+                                            ? FlutterIcons.favorite_mdi
+                                            : FlutterIcons.favorite_border_mdi,
                                         size: 30,
                                         color: Myconstants.activeColor,
                                       )),
@@ -229,111 +237,50 @@ class DetailsCoffee extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Container(
-                                    width: 100,
-                                    height: 44,
-                                    decoration: ShapeDecoration(
-                                      color: const Color(0xFF3B2C26),
-                                      shape: RoundedRectangleBorder(
-                                        side: const BorderSide(
-                                            width: 1, color: Color(0xFF3B2C26)),
-                                        borderRadius: BorderRadius.circular(6),
-                                      ),
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Image.asset('Assets/Icons/Vector.jpg'),
-                                        const SizedBox(
-                                          width: 5,
-                                        ),
-                                        const Text(
-                                          '250ml',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            color: Color(0xFFAEAEAE),
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w500,
-                                            height: 0,
-                                          ),
-                                        )
-                                      ],
-                                    ),
+                                  SizeCoffee(
+                                    onTap: () {
+                                      return getfavor.toggleSelection(0);
+                                    },
+                                    size: '250ml',
+                                    color: getfavor.selectedIndex == 0
+                                        ? Myconstants.activeColor
+                                        : const Color(0xFFAEAEAE),
+                                    sizecup: 20,
+                                    backgroundColor: getfavor.selectedIndex == 0
+                                        ? Myconstants.activeColor
+                                        : Myconstants.darkColor,
                                   ),
                                   const SizedBox(
                                     width: 10,
                                   ),
-                                  Container(
-                                    width: 100,
-                                    height: 44,
-                                    decoration: ShapeDecoration(
-                                      color: const Color(0xFF3B2C26),
-                                      shape: RoundedRectangleBorder(
-                                        side: const BorderSide(
-                                            width: 1, color: Color(0xFF3B2C26)),
-                                        borderRadius: BorderRadius.circular(6),
-                                      ),
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Image.asset(
-                                          'Assets/Icons/Vector.jpg',
-                                          width: 20,
-                                          height: 100,
-                                        ),
-                                        const SizedBox(
-                                          width: 3,
-                                        ),
-                                        const Text(
-                                          '350ml',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            color: Color(0xFFAEAEAE),
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w500,
-                                            height: 0,
-                                          ),
-                                        )
-                                      ],
-                                    ),
+                                  SizeCoffee(
+                                    onTap: () {
+                                      return getfavor.toggleSelection(1);
+                                    },
+                                    size: '350ml',
+                                    color: getfavor.selectedIndex == 1
+                                        ? Myconstants.activeColor
+                                        : const Color(0xFFAEAEAE),
+                                    sizecup: 25,
+                                    backgroundColor: getfavor.selectedIndex == 1
+                                        ? Myconstants.activeColor
+                                        : Myconstants.darkColor,
                                   ),
                                   const SizedBox(
                                     width: 10,
                                   ),
-                                  Container(
-                                    width: 100,
-                                    height: 44,
-                                    decoration: ShapeDecoration(
-                                      color: const Color(0xFF3B2C26),
-                                      shape: RoundedRectangleBorder(
-                                        side: const BorderSide(
-                                            width: 1, color: Color(0xFF3B2C26)),
-                                        borderRadius: BorderRadius.circular(6),
-                                      ),
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Image.asset('Assets/Icons/Vector.jpg'),
-                                        const SizedBox(
-                                          width: 3,
-                                        ),
-                                        const Text(
-                                          '450ml',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            color: Color(0xFFAEAEAE),
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w500,
-                                            height: 0,
-                                          ),
-                                        )
-                                      ],
-                                    ),
+                                  SizeCoffee(
+                                    onTap: () {
+                                      return getfavor.toggleSelection(2);
+                                    },
+                                    size: '450ml',
+                                    color: getfavor.selectedIndex == 2
+                                        ? Myconstants.activeColor
+                                        : const Color(0xFFAEAEAE),
+                                    sizecup: 30,
+                                    backgroundColor: getfavor.selectedIndex == 2
+                                        ? Myconstants.activeColor
+                                        : Myconstants.darkColor,
                                   ),
                                 ],
                               )),
@@ -348,11 +295,132 @@ class DetailsCoffee extends StatelessWidget {
                                   fontWeight: FontWeight.w700,
                                   fontSize: 32,
                                 ),
+                              )),
+                          Positioned(
+                              bottom: 35,
+                              left: 20,
+                              right: 20,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Container(
+                                    width: 133,
+                                    height: 47,
+                                    decoration: ShapeDecoration(
+                                      color: Colors.transparent,
+                                      shape: RoundedRectangleBorder(
+                                        side: BorderSide(
+                                          style: BorderStyle.solid,
+                                            width: 2,
+                                            color: Myconstants.activeColor),
+                                        borderRadius: BorderRadius.circular(30),
+                                      ),
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        IconButton(
+                                            onPressed: () {
+                                              getfavor.dec();
+
+                                            },
+                                            icon: Icon(
+                                              FlutterIcons.minus_ant,
+                                              color: Myconstants.activeColor,
+                                            )),
+                                        Text(
+                                          '${getfavor.counter}',
+                                          style: TextStyle(
+                                            color: Myconstants.activeColor,
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 12,
+                                          ),
+                                        ),
+                                        IconButton(
+                                            onPressed: () {
+                                              getfavor.inc();
+                                            },
+                                            icon: Icon(
+                                              FlutterIcons.plus_ant,
+                                              color: Myconstants.activeColor,
+                                            ))
+                                      ],
+                                    ),
+                                  ),
+                                  GestureDetector(
+                                    onTap: (){
+
+                                    },
+                                    child: CustomeButton(
+                                      width: 190,
+                                      height: 50,
+                                      textbutton: 'ADD TO CART',
+                                      colorButton: Myconstants.activeColor,
+                                      colortextButton: Myconstants.darkColor,
+                                    ),
+                                  )
+                                ],
                               ))
                         ],
                       )),
                 ))
           ]),
         ));
+  }
+}
+
+class SizeCoffee extends StatelessWidget {
+  const SizeCoffee({
+    super.key,
+    required this.size,
+    this.sizecup,
+    this.color,
+    this.backgroundColor,
+    this.onTap,
+  });
+
+  final String size;
+  final double? sizecup;
+  final Color? color;
+  final dynamic backgroundColor;
+  final void Function()? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: 100,
+        height: 44,
+        decoration: ShapeDecoration(
+          color: const Color(0xFF3B2C26),
+          shape: RoundedRectangleBorder(
+            side: BorderSide(width: 1, color: backgroundColor),
+            borderRadius: BorderRadius.circular(6),
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(FlutterIcons.coffee_outline_mco, size: sizecup, color: color),
+            const SizedBox(
+              width: 5,
+            ),
+            Text(
+              size,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: color,
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                height: 0,
+              ),
+            )
+          ],
+        ),
+      ),
+    );
   }
 }

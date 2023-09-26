@@ -1,6 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
 class Coffee {
+  final String id;
   final String name;
   final String description;
   final String imageUrl;
@@ -8,10 +9,11 @@ class Coffee {
   final double rating;
   final double price;
   final String size;
-  final bool isFavorite;
+   bool isFavorite;
 
   Coffee(
-      {required this.name,
+      {required this.id,
+      required this.name,
       required this.description,
       required this.imageUrl,
       required this.type,
@@ -32,7 +34,7 @@ final List<Coffee> Popularlist = [
       rating: 4.5,
       price: 10,
       size: "250ml",
-      isFavorite: false),
+      isFavorite: false, id: '1'),
   Coffee(
       name: "ICED AMERICANO",
       type: "Black coffee",
@@ -43,7 +45,7 @@ final List<Coffee> Popularlist = [
       rating: 4.5,
       price: 3.99,
       size: "450ml",
-      isFavorite: false),
+      isFavorite: false, id: '2'),
   Coffee(
       name: "SILKY CAFE AU LAIT",
       description:
@@ -54,7 +56,7 @@ final List<Coffee> Popularlist = [
       rating: 4.2,
       price: 4.49,
       size: "450ml",
-      isFavorite: true),
+      isFavorite: true, id: '3'),
   Coffee(
     name: "Iced Chocolate",
     description:
@@ -65,7 +67,7 @@ final List<Coffee> Popularlist = [
     rating: 4.7,
     price: 5.99,
     size: '450ml',
-    isFavorite: false,
+    isFavorite: false, id: '4',
   ),
 ];
 final List<Coffee> Blackcoffee = [
@@ -77,7 +79,7 @@ final List<Coffee> Blackcoffee = [
       rating: 3.5,
       price: 5.8,
       size: "250ml",
-      isFavorite: false),
+      isFavorite: false, id: '5'),
   Coffee(
       name: "ICED AMERICANO",
       type: "Black coffee",
@@ -88,7 +90,7 @@ final List<Coffee> Blackcoffee = [
       rating: 4.5,
       price: 3.99,
       size: "450ml",
-      isFavorite: false),
+      isFavorite: false, id: '2'),
   Coffee(
       name: "Espresso coffee",
       description:
@@ -99,7 +101,7 @@ final List<Coffee> Blackcoffee = [
       rating: 4.0,
       price: 4.49,
       size: "250ml",
-      isFavorite: true),
+      isFavorite: true, id: '7'),
   Coffee(
     name: "Long Black Coffee ",
     description:
@@ -110,7 +112,7 @@ final List<Coffee> Blackcoffee = [
     rating: 4.7,
     price: 8.99,
     size: '350ml',
-    isFavorite: false,
+    isFavorite: false, id: '8',
   ),
   Coffee(
     name: "Ristretto coffee",
@@ -122,7 +124,7 @@ final List<Coffee> Blackcoffee = [
     rating: 4.5,
     price: 10.99,
     size: '250ml',
-    isFavorite: false,
+    isFavorite: false, id: '9',
   ),
 ];
 final List<Coffee> Winterspecial = [
@@ -134,7 +136,7 @@ final List<Coffee> Winterspecial = [
       rating: 4.5,
       price: 10.8,
       size: "450ml",
-      isFavorite: false),
+      isFavorite: false, id: '10'),
   Coffee(
       name: "Gingerbread Latte",
       type: "Winter special",
@@ -144,7 +146,7 @@ final List<Coffee> Winterspecial = [
       rating: 4.3,
       price: 12.99,
       size: "450ml",
-      isFavorite: false),
+      isFavorite: false, id: '11'),
   Coffee(
       name: "Caramel Brulée Latte",
       description:
@@ -154,7 +156,7 @@ final List<Coffee> Winterspecial = [
       rating: 4.0,
       price: 4.49,
       size: "250ml",
-      isFavorite: true),
+      isFavorite: true, id: '12'),
   Coffee(
     name: "Toasted Marshmallow Mocha ",
     description:
@@ -165,7 +167,7 @@ final List<Coffee> Winterspecial = [
     rating: 4.9,
     price: 15.99,
     size: '450ml',
-    isFavorite: false,
+    isFavorite: false, id: '13',
   ),
   Coffee(
       name: "Cappuccino",
@@ -177,7 +179,7 @@ final List<Coffee> Winterspecial = [
       rating: 4.5,
       price: 10,
       size: "250ml",
-      isFavorite: false),
+      isFavorite: false, id: '1'),
 ];
 final List<Coffee> Decaffcoffee = [
   Coffee(
@@ -188,7 +190,7 @@ final List<Coffee> Decaffcoffee = [
       rating: 4.1,
       price: 10.8,
       size: "250ml",
-      isFavorite: false),
+      isFavorite: false, id: '15'),
   Coffee(
       name: "SILKY CAFE AU LAIT",
       description:
@@ -199,7 +201,7 @@ final List<Coffee> Decaffcoffee = [
       rating: 4.2,
       price: 4.49,
       size: "450ml",
-      isFavorite: true),
+      isFavorite: true, id: '3'),
 
 ];
 final List<Coffee> Chocolate = [
@@ -213,7 +215,7 @@ final List<Coffee> Chocolate = [
     rating: 4.7,
     price: 5.99,
     size: '450ml',
-    isFavorite: false,
+    isFavorite: false, id: '4',
   ),
   Coffee(
     name: "Chocolate Cappuccino",
@@ -224,7 +226,7 @@ final List<Coffee> Chocolate = [
     rating: 4.9,
     price: 13.99,
     size: '350ml',
-    isFavorite: false,
+    isFavorite: false, id: '18',
   ),
   Coffee(
     name: "Chocolate Macchiato",
@@ -235,7 +237,7 @@ final List<Coffee> Chocolate = [
     rating: 4.9,
     price: 13.99,
     size: '350ml',
-    isFavorite: false,
+    isFavorite: false, id: '19',
   ),
   Coffee(
     name: "Hot Chocolate Coffee",
@@ -246,6 +248,6 @@ final List<Coffee> Chocolate = [
     rating: 4.4,
     price: 13.99,
     size: '450ml',
-    isFavorite: false,
+    isFavorite: false, id: '20',
   ),
 ];

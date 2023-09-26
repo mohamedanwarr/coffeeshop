@@ -5,6 +5,7 @@ import 'package:coffeeshop/constants/Constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'Providers/FavroateProviders.dart';
 import 'Providers/LoginandSignuproviders.dart';
 import 'Providers/MainScreenProviders.dart';
 import 'Utilies/AppState.dart' show AuthWrapper;
@@ -21,6 +22,7 @@ void main() async {
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) => LoginandSignup()),
     ChangeNotifierProvider(create: (_) => MainScreenProvider()),
+    ChangeNotifierProvider(create: (_) =>favor())
   ], child: const CoffeeShop()));
 }
 

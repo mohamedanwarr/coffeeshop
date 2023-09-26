@@ -20,11 +20,13 @@ class AppBarandTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
     return Stack(
       children: [
         Container(
           width: double.infinity,
-          height: 220,
+          height: MediaQuery.of(context).size.height*0.26,
           decoration: BoxDecoration(
             color: Myconstants.activeColor,
           ),
@@ -117,10 +119,11 @@ class AppBarandTab extends StatelessWidget {
         ),
         Padding(
           padding: EdgeInsets.only(
-              top: MediaQuery.of(context).size.height * 0.265),
+              top: MediaQuery.of(context).size.height * 0.255),
           child: Container(
             padding: const EdgeInsets.only(
-              left: 12,
+              right: 10,
+              left: 10,
             ),
             child: TabBarView(controller: _tabController, children: const [
               Popularscreen(),
