@@ -10,6 +10,7 @@ import '../../Screens/HomeScreen/ChocolateScreen.dart';
 import '../../Screens/HomeScreen/Decaffscreen.dart';
 import '../../Screens/HomeScreen/Popularlscreen.dart';
 import '../../Screens/HomeScreen/WinterspecialScreen.dart';
+
 class AppBarandTab extends StatelessWidget {
   const AppBarandTab({
     super.key,
@@ -20,13 +21,22 @@ class AppBarandTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery
+        .of(context)
+        .size
+        .width;
+    final height = MediaQuery
+        .of(context)
+        .size
+        .height;
     return Stack(
       children: [
         Container(
           width: double.infinity,
-          height: MediaQuery.of(context).size.height*0.26,
+          height: MediaQuery
+              .of(context)
+              .size
+              .height * 0.26,
           decoration: BoxDecoration(
             color: Myconstants.activeColor,
           ),
@@ -50,14 +60,14 @@ class AppBarandTab extends StatelessWidget {
                         color: Myconstants.darkColor,
                         fontWeight: FontWeight.w400),
                   )),
-                const Positioned(right: 20, top: 32, child: PopMenu()),
+              const Positioned(right: 20, top: 32, child: PopMenu()),
               Positioned(
-                  right: 75, top: 32,
-                  child: SizedBox(
-                    width: 25,
-                    height: 34,
-
-                    child: Image.asset('Assets/Icons/clarity_notification-solid-badged.png'),
+                  right: 75,
+                  top: 32,
+                  child: Icon(
+                    FlutterIcons.ios_notifications_outline_ion,
+                    color:Myconstants.darkColor,
+                    size: 30,
                   )),
               Positioned(
                   left: 30,
@@ -69,7 +79,6 @@ class AppBarandTab extends StatelessWidget {
                         color: Myconstants.darkColor,
                         fontWeight: FontWeight.w600),
                   )),
-
               Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -80,7 +89,8 @@ class AppBarandTab extends StatelessWidget {
                       length: 5,
                       child: TabBar(
                         controller: _tabController,
-                        physics: const BouncingScrollPhysics(decelerationRate: ScrollDecelerationRate.normal),
+                        physics: const BouncingScrollPhysics(
+                            decelerationRate: ScrollDecelerationRate.normal),
                         isScrollable: true,
                         indicatorPadding: const EdgeInsets.all(5),
                         indicatorSize: TabBarIndicatorSize.tab,
@@ -118,8 +128,11 @@ class AppBarandTab extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(
-              top: MediaQuery.of(context).size.height * 0.255),
+          padding:
+          EdgeInsets.only(top: MediaQuery
+              .of(context)
+              .size
+              .height * 0.255),
           child: Container(
             padding: const EdgeInsets.only(
               right: 10,
@@ -131,11 +144,9 @@ class AppBarandTab extends StatelessWidget {
               WinterSpecial(),
               DecaffCoffee(),
               ChocolateCoffee(),
-            ]
-            ),
+            ]),
           ),
         )
-
       ],
     );
   }

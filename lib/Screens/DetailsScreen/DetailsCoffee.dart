@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:coffeeshop/Providers/CartProviders.dart';
 import 'package:coffeeshop/Providers/FavroateProviders.dart';
 import 'package:coffeeshop/constants/Constants.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ import 'package:provider/provider.dart';
 import '../../Componant/CustomeButton.dart';
 import '../../Componant/CustomeMenu.dart';
 import '../../Models/ProductsModel.dart';
+import '../../Utilies/snackbar.dart';
 
 class DetailsCoffee extends StatelessWidget {
   final Coffee coffee;
@@ -19,9 +21,19 @@ class DetailsCoffee extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void addtocart(){
+      final getcart=Provider.of<cartprovider>(context,listen: false);
+      if(getcart.counter>0){
+        getcart.addToCart(coffee,getcart.counter);
+        SnacBar.showmessage('Successfully added to cart', isuccess: true);
+      }else{
+        SnacBar.showmessage('Nothing added to cart', isuccess: false);
+      }
+    }
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     final getfavor = Provider.of<favor>(context);
+    final getcart=Provider.of<cartprovider>(context);
     return Scaffold(
         resizeToAvoidBottomInset: false,
         body: Center(
@@ -65,7 +77,9 @@ class DetailsCoffee extends StatelessWidget {
                           width: 25,
                           height: 34,
                           child: Image.asset(
-                              'Assets/Icons/clarity_notification-solid-badged.png'),
+                              'Assets/Icons/Notifications icon.png',
+                            color: Myconstants.darkColor,
+                          ),
                         )),
                   ],
                 ),
@@ -323,7 +337,7 @@ class DetailsCoffee extends StatelessWidget {
                                       children: [
                                         IconButton(
                                             onPressed: () {
-                                              getfavor.dec();
+                                              getcart.decquantity();
 
                                             },
                                             icon: Icon(
@@ -331,7 +345,7 @@ class DetailsCoffee extends StatelessWidget {
                                               color: Myconstants.activeColor,
                                             )),
                                         Text(
-                                          '${getfavor.counter}',
+                                          '${getcart.counter}',
                                           style: TextStyle(
                                             color: Myconstants.activeColor,
                                             fontWeight: FontWeight.w700,
@@ -340,7 +354,7 @@ class DetailsCoffee extends StatelessWidget {
                                         ),
                                         IconButton(
                                             onPressed: () {
-                                              getfavor.inc();
+                                              getcart.incquantity();
                                             },
                                             icon: Icon(
                                               FlutterIcons.plus_ant,
@@ -351,7 +365,7 @@ class DetailsCoffee extends StatelessWidget {
                                   ),
                                   GestureDetector(
                                     onTap: (){
-
+                                      addtocart();
                                     },
                                     child: CustomeButton(
                                       width: 190,

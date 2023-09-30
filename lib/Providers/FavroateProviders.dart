@@ -6,7 +6,6 @@ class favor extends ChangeNotifier{
 
   List<String> get favoriteCoffeeIds => _favoriteCoffeeIds;
   int selectedIndex = -1;
-  int counter=1;
 
   void toggleSelection(int index) {
     if (index == selectedIndex) {
@@ -18,20 +17,6 @@ class favor extends ChangeNotifier{
     }
     notifyListeners();
   }
-  void inc(){
-    counter++==1;
-    notifyListeners();
-  }
-  void dec(){
-    if(counter>=2){
-      counter--;
-    }else{
-      return null;
-    }
-    notifyListeners();
-  }
-
-
   bool isFavorite(Coffee coffee) {
     return _favoriteCoffeeIds.contains(coffee.id);
   }

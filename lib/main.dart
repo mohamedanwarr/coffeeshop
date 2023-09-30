@@ -1,5 +1,6 @@
 // ignore_for_file: depend_on_referenced_packages
 
+import 'package:coffeeshop/Providers/CartProviders.dart';
 import 'package:coffeeshop/Utilies/snackbar.dart';
 import 'package:coffeeshop/constants/Constants.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,8 @@ void main() async {
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) => LoginandSignup()),
     ChangeNotifierProvider(create: (_) => MainScreenProvider()),
-    ChangeNotifierProvider(create: (_) =>favor())
+    ChangeNotifierProvider(create: (_) =>favor()),
+    ChangeNotifierProvider(create: (_) =>cartprovider()),
   ], child: const CoffeeShop()));
 }
 

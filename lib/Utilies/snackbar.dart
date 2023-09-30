@@ -10,7 +10,6 @@ class SnacBar {
   static void showmessage(String text, {bool isuccess = false}) {
     if (text == null) return;
     final snackbar = SnackBar(
-
       behavior: SnackBarBehavior.floating,
       // padding: const EdgeInsets.all(10),
       backgroundColor: Colors.transparent,
@@ -19,7 +18,7 @@ class SnacBar {
 
         inMaterialBanner: true,
         titleFontSize: 15,
-        messageFontSize: 12,
+        messageFontSize: 15,
        title: isuccess?'Congratulation':'On Snap!',
         message: text,
         contentType: isuccess ? ContentType.success : ContentType.failure,
