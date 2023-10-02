@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -17,7 +19,7 @@ class BlackCoffee extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          height: MediaQuery.of(context).size.height * 0.63,
+          height: MediaQuery.of(context).size.height * 0.60,
           width: width,
           child: ListView.builder(
               scrollDirection: Axis.vertical,

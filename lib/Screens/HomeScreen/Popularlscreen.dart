@@ -19,7 +19,7 @@ class Popularscreen extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          height: MediaQuery.of(context).size.height * 0.63,
+          height: MediaQuery.of(context).size.height * 0.60,
           width: width,
           child: ListView.builder(
               scrollDirection: Axis.vertical,

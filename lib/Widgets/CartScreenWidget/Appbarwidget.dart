@@ -1,50 +1,8 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import 'package:icons_flutter/icons_flutter.dart';
 
 import '../../Componant/CustomeMenu.dart';
 import '../../constants/Constants.dart';
-import 'PastOrders.dart';
-import 'RecentlyScreen.dart';
-
-class CartScreen extends StatefulWidget {
-  const CartScreen({Key? key}) : super(key: key);
-
-  @override
-  State<CartScreen> createState() => _CartScreenState();
-}
-
-class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
-  late final TabController _tabController =
-      TabController(length: 2, vsync: this);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Myconstants.darkColor,
-      body: Stack(children: [
-        AppBarCart(tabController: _tabController),
-        Padding(
-          padding:
-              EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.210),
-          child: Container(
-            padding: const EdgeInsets.only(
-              right: 10,
-              left: 10,
-            ),
-            child: TabBarView(controller: _tabController, children: const [
-              RecentlyScreen(),
-              PastOreders()
-            ]),
-          ),
-        )
-      ]),
-    );
-  }
-
-}
-
 class AppBarCart extends StatelessWidget {
   const AppBarCart({
     super.key,

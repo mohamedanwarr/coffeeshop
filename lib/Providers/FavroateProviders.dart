@@ -30,6 +30,9 @@ class favor extends ChangeNotifier{
     coffee.isFavorite = isFavorite(coffee);
     notifyListeners();
   }
+  List<Coffee> getFavoriteCoffees(List<Coffee> allCoffees) {
+    return allCoffees.where((coffee) => _favoriteCoffeeIds.contains(coffee.id)).toList();
+  }
 
 
 }

@@ -5,38 +5,27 @@ import 'package:icons_flutter/icons_flutter.dart';
 
 import '../../Componant/CustomeMenu.dart';
 import '../../constants/Constants.dart';
-import '../../Screens/HomeScreen/BlackCoffeeScreen.dart';
-import '../../Screens/HomeScreen/ChocolateScreen.dart';
-import '../../Screens/HomeScreen/Decaffscreen.dart';
-import '../../Screens/HomeScreen/Popularlscreen.dart';
-import '../../Screens/HomeScreen/WinterspecialScreen.dart';
 
 class AppBarandTab extends StatelessWidget {
   const AppBarandTab({
     super.key,
-    required TabController tabController,
+    TabController? tabController,
+    required this.width,
+    required this.height,
   }) : _tabController = tabController;
 
-  final TabController _tabController;
+  final TabController? _tabController;
+  final double width;
+  final double height;
+
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery
-        .of(context)
-        .size
-        .width;
-    final height = MediaQuery
-        .of(context)
-        .size
-        .height;
     return Stack(
       children: [
         Container(
-          width: double.infinity,
-          height: MediaQuery
-              .of(context)
-              .size
-              .height * 0.26,
+          width: width,
+          height: height,
           decoration: BoxDecoration(
             color: Myconstants.activeColor,
           ),
@@ -60,13 +49,17 @@ class AppBarandTab extends StatelessWidget {
                         color: Myconstants.darkColor,
                         fontWeight: FontWeight.w400),
                   )),
-              const Positioned(right: 20, top: 32, child: PopMenu()),
+               const Positioned(
+                right: 20,
+                top: 32,
+                child: PopMenu(),
+              ),
               Positioned(
                   right: 75,
                   top: 32,
                   child: Icon(
                     FlutterIcons.ios_notifications_outline_ion,
-                    color:Myconstants.darkColor,
+                    color: Myconstants.darkColor,
                     size: 30,
                   )),
               Positioned(
@@ -123,30 +116,10 @@ class AppBarandTab extends StatelessWidget {
                     ),
                   ),
                 ],
-              )
+              ),
             ],
           ),
         ),
-        Padding(
-          padding:
-          EdgeInsets.only(top: MediaQuery
-              .of(context)
-              .size
-              .height * 0.255),
-          child: Container(
-            padding: const EdgeInsets.only(
-              right: 10,
-              left: 10,
-            ),
-            child: TabBarView(controller: _tabController, children: const [
-              Popularscreen(),
-              BlackCoffee(),
-              WinterSpecial(),
-              DecaffCoffee(),
-              ChocolateCoffee(),
-            ]),
-          ),
-        )
       ],
     );
   }
