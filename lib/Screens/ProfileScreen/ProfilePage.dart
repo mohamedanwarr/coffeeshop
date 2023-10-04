@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+
+import '../../constants/Constants.dart';
+
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Colors.yellow,
+    return  Scaffold(
+      backgroundColor: Myconstants.darkColor,
     );
   }
 }

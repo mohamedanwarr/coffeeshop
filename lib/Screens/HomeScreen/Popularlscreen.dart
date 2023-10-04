@@ -87,15 +87,23 @@ class Popularscreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(10),
                                 image: DecorationImage(
                                     // ignore: non_constant_identifier_names
-                                    onError: (Object, StackTrace) {
-                                      LoadingAnimationWidget.discreteCircle(
-                                        color: Myconstants.darkColor,
-                                        secondRingColor:
-                                            Myconstants.activeColor,
-                                        size: 40,
-                                      );
-                                    },
+                                    // onError: (Object, StackTrace) {
+                                    //   LoadingAnimationWidget.discreteCircle(
+                                    //     color: Myconstants.darkColor,
+                                    //     secondRingColor:
+                                    //         Myconstants.activeColor,
+                                    //     size: 40,
+                                    //   );
+                                    // },
                                     image: CachedNetworkImageProvider(
+                                      errorListener:  (){
+                                        LoadingAnimationWidget.discreteCircle(
+                                          color: Myconstants.darkColor,
+                                          secondRingColor:
+                                          Myconstants.activeColor,
+                                          size: 40,
+                                        );
+                                },
                                         coffee.imageUrl),
                                     fit: BoxFit.cover),
                               ),

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:icons_flutter/icons_flutter.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
+import '../../Componant/CustomeButton.dart';
 import '../../Models/ProductsModel.dart';
 import '../../constants/Constants.dart';
 
@@ -40,7 +41,7 @@ class ProductDetailsDialog extends StatelessWidget {
     return SingleChildScrollView(
       child: Container(
         width: width,
-        height: height * 0.87,
+        height: height * 0.89,
         decoration: ShapeDecoration(
           color: Myconstants.activeColor,
           shape: const RoundedRectangleBorder(
@@ -60,7 +61,7 @@ class ProductDetailsDialog extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Container(
                   width: width,
-                  height: 220.75,
+                  height: 640.75,
                   decoration: BoxDecoration(
                       color: Myconstants.whiteColor,
                       borderRadius: BorderRadius.circular(15)),
@@ -135,7 +136,7 @@ class ProductDetailsDialog extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(
-                          height: 20,
+                          height: 10,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -149,7 +150,7 @@ class ProductDetailsDialog extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(
-                              width: 200,
+                              width: 180,
                             ),
                             Text(
                               'Edit',
@@ -161,223 +162,203 @@ class ProductDetailsDialog extends StatelessWidget {
                             )
                           ],
                         ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'Your order:',
+                            style: TextStyle(
+                              color: Myconstants.darkColor,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 1.0),
+                          child: ListTile(
+                            leading: Container(
+                              width: 60,
+                              height: 60,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                image: DecorationImage(
+                                  // ignore: non_constant_identifier_names, avoid_types_as_parameter_names
+                                  onError: (Object, StackTrace) {
+                                    LoadingAnimationWidget.discreteCircle(
+                                      color: Myconstants.darkColor,
+                                      secondRingColor: Myconstants.activeColor,
+                                      size: 40,
+                                    );
+                                  },
+                                  image: CachedNetworkImageProvider(
+                                      coffee.imageUrl),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                            title: Row(
+                              children: [
+                                SizedBox(
+                                  width: 150,
+                                  child: Text(
+                                    coffee.name,
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 10),
+                                Text(
+                                  "${quantity}X",
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            subtitle: Text(
+                              '\$${totalpricecoffee.toStringAsFixed(2)}',
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            trailing: Text(
+                              'Edit',
+                              style: TextStyle(
+                                color: Myconstants.darkColor,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Divider(
+                          indent: 8,
+                          endIndent: 8,
+                          color: Myconstants.darkColor,
+                          thickness: 1.5,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Text(
+                            "Other drinks we recommend",
+                            style: TextStyle(
+                              color: Myconstants.darkColor,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: width,
+                          height: 92,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: 2,
+                            // You can specify the number of recommended coffees you want to display
+                            itemBuilder: (context, int index) {
+                              final recommendedCoffee =
+                                  getRandomRecommendedCoffee(allCoffees);
+                              return Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 5.0, vertical: 1),
+                                  child: Container(
+                                    width: 162,
+                                    height: 92,
+                                    decoration: BoxDecoration(
+                                      color: Colors.black.withOpacity(0.2),
+                                      borderRadius: BorderRadius.circular(10),
+                                      image: DecorationImage(
+                                        // ignore: non_constant_identifier_names, avoid_types_as_parameter_names
+                                        onError: (Object, StackTrace) {
+                                          LoadingAnimationWidget.discreteCircle(
+                                            color: Myconstants.darkColor,
+                                            secondRingColor:
+                                                Myconstants.activeColor,
+                                            size: 40,
+                                          );
+                                        },
+                                        image: CachedNetworkImageProvider(
+                                          recommendedCoffee.imageUrl,
+                                        ),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                    child: Stack(
+                                      children: [
+                                        Positioned(
+                                          top: 40,
+                                          left: 10,
+                                          child: Text(
+                                            recommendedCoffee.name,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.w800,
+                                              color: Myconstants.whiteColor,
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                        ),
+                                        Positioned(
+                                          top: 60,
+                                          left: 20,
+                                          child: Text(
+                                            "${recommendedCoffee.price}",
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.w800,
+                                              color: Myconstants.whiteColor,
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ));
+                            },
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        ordertotal(
+                          Subtotal: Subtotal,
+                          text: 'Subtotal',
+                        ),
+                        const ordertotal(
+                          Subtotal: Deliveryfee,
+                          text: 'Delivery fee',
+                        ),
+                        const ordertotal(
+                          Subtotal: Packagingfee,
+                          text: 'Packaging fee',
+                        ),
+                        const ordertotal(
+                          Subtotal: promo,
+                          text: 'Promo',
+                        ),
+                        ordertotal(
+                          Subtotal: Total,
+                          text: 'Total',
+                        ),
                       ],
                     ),
                   )),
             ),
-            const SizedBox(
-              height: 0,
-            ),
+            const SizedBox(height: 2,),
             Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Container(
-                width: width,
-                height: 440.75,
-                decoration: BoxDecoration(
-                    color: Myconstants.whiteColor,
-                    borderRadius: BorderRadius.circular(15)),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 15.0, vertical: 8.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Your order:',
-                        style: TextStyle(
-                          color: Myconstants.darkColor,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              width: 51,
-                              height: 49,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                image: DecorationImage(
-                                    // ignore: non_constant_identifier_names, avoid_types_as_parameter_names
-                                    onError: (Object, StackTrace) {
-                                      LoadingAnimationWidget.discreteCircle(
-                                        color: Myconstants.darkColor,
-                                        secondRingColor: Myconstants.activeColor,
-                                        size: 40,
-                                      );
-                                    },
-                                    image: CachedNetworkImageProvider(
-                                        coffee.imageUrl),
-                                    fit: BoxFit.cover),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Text("${quantity}X",
-                                            style: const TextStyle(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w400)),
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(coffee.name,
-                                            style: const TextStyle(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w400)),
-                                        const SizedBox(
-                                          width: 90,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text(
-                                              'Edit',
-                                              style: TextStyle(
-                                                color: Myconstants.darkColor,
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w400,
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-
-                                Text(
-                                    '\$${totalpricecoffee.toStringAsFixed(2)}',
-                                    style: const TextStyle(
-                                        fontSize: 14, fontWeight: FontWeight.w400)),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 200,
-                      ),
-                      Divider(
-                        indent: 8,
-                        endIndent: 8,
-                        color: Myconstants.darkColor,
-                        thickness: 1.5,
-                      ),
-                      Text(
-                        "Other drinks we recommend",
-                        style: TextStyle(
-                          color: Myconstants.darkColor,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      SizedBox(
-                        width: width,
-                        height: 92,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: 2, // Use recommendedCoffees.length here
-                          itemBuilder: (context, int index) {
-                            final recommendedCoffee =
-                                getRandomRecommendedCoffee(allCoffees);
-                            return Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 8.0),
-                              child: Container(
-                                width: 162,
-                                height: 92,
-                                decoration: ShapeDecoration(
-                                  color: Colors.black
-                                      .withOpacity(0.20000000298023224),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  image: DecorationImage(
-                                    // ignore: non_constant_identifier_names, avoid_types_as_parameter_names
-                                    onError: (Object, StackTrace) {
-                                      LoadingAnimationWidget.discreteCircle(
-                                        color: Myconstants.darkColor,
-                                        secondRingColor:
-                                            Myconstants.activeColor,
-                                        size: 40,
-                                      );
-                                    },
-                                    image: CachedNetworkImageProvider(
-                                        recommendedCoffee.imageUrl),
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                                child: Stack(
-                                  children: [
-                                    Positioned(
-                                      top: 40,
-                                      left: 10,
-                                      child: Text(
-                                        recommendedCoffee.name,
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w800,
-                                          color: Myconstants.whiteColor,
-                                          fontSize: 12,
-                                        ),
-                                      ),
-                                    ),
-                                    Positioned(
-                                      top: 60,
-                                      left: 20,
-                                      child: Text(
-                                        "${recommendedCoffee.price}",
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w800,
-                                          color: Myconstants.whiteColor,
-                                          fontSize: 12,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      ordertotal(
-                        Subtotal: Subtotal,
-                        text: 'Subtotal',
-                      ),
-                      const ordertotal(
-                        Subtotal: Deliveryfee,
-                        text: 'Delivery fee',
-                      ),
-                      const ordertotal(
-                        Subtotal: Packagingfee,
-                        text: 'Packaging fee',
-                      ),
-                      const ordertotal(
-                        Subtotal: promo,
-                        text: 'Promo',
-                      ),
-                      ordertotal(
-                        Subtotal: Total,
-                        text: 'Total',
-                      ),
-                    ],
-                  ),
-                ),
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: CustomeButton(
+                  width: double.infinity,
+                  height: 50,
+                  textbutton: 'Check Out', // Changed to 'textButton'
+                  colorButton: Myconstants.darkColor,
+                  colortextButton:Myconstants.activeColor
+                // Added text color
               ),
             ),
           ],
@@ -401,26 +382,29 @@ class ordertotal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            text,
-            style: TextStyle(
-              color: Myconstants.darkColor,
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              text,
+              style: TextStyle(
+                color: Myconstants.darkColor,
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+              ),
             ),
-          ),
-          Text(
-            '\$$Subtotal',
-            style: TextStyle(
-              color: Myconstants.darkColor,
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-            ),
-          )
-        ],
+            Text(
+              '\$$Subtotal',
+              style: TextStyle(
+                color: Myconstants.darkColor,
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
