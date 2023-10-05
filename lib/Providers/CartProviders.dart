@@ -7,6 +7,10 @@ class cartprovider extends ChangeNotifier {
   List<Coffee> get cart => _cart;
   int counter=0;
 
+  void resetToDefault() {
+    counter=0;
+    notifyListeners();
+  }
 
   void incquantity(){
     counter++;

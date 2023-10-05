@@ -6,7 +6,10 @@ class favor extends ChangeNotifier{
 
   List<String> get favoriteCoffeeIds => _favoriteCoffeeIds;
   int selectedIndex = -1;
-
+  void resetToDefault() {
+   selectedIndex=-1;
+    notifyListeners();
+  }
   void toggleSelection(int index) {
     if (index == selectedIndex) {
       // If the same item is tapped again, deselect it

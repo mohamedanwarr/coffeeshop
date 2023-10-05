@@ -31,6 +31,8 @@ class FavoraiteScreen extends StatelessWidget {
         }
       }
     }
+    final height= MediaQuery.of(context).size.height;
+    final width= MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Myconstants.darkColor,
       body: Stack(
@@ -38,11 +40,11 @@ class FavoraiteScreen extends StatelessWidget {
           const appbarfave(),
           Padding(
               padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.185),
+                  top: height * 0.190),
               child: SafeArea(
                 child: Container(
-                    width: double.infinity,
-                    height: MediaQuery.of(context).size.height * 0.75,
+                    width: width,
+                    height: height * 0.75,
                     decoration: const BoxDecoration(
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(20),

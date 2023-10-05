@@ -202,7 +202,7 @@ class ProductDetailsDialog extends StatelessWidget {
                             title: Row(
                               children: [
                                 SizedBox(
-                                  width: 150,
+                                  width: 165,
                                   child: Text(
                                     coffee.name,
                                     style: const TextStyle(
@@ -245,7 +245,7 @@ class ProductDetailsDialog extends StatelessWidget {
                           thickness: 1.5,
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(5.0),
+                          padding: const EdgeInsets.all(2.0),
                           child: Text(
                             "Other drinks we recommend",
                             style: TextStyle(
@@ -267,7 +267,7 @@ class ProductDetailsDialog extends StatelessWidget {
                                   getRandomRecommendedCoffee(allCoffees);
                               return Padding(
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 5.0, vertical: 1),
+                                      horizontal: 10.0, vertical: 1),
                                   child: Container(
                                     width: 162,
                                     height: 92,
@@ -383,7 +383,7 @@ class ordertotal extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(1.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

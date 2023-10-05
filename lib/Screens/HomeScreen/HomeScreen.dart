@@ -34,14 +34,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     return Scaffold(
         backgroundColor: Myconstants.darkColor,
         body: Stack(children: [
-          AppBarandTab(  width: double.infinity,tabController: _tabController,
+          AppBarandTab(  width:width,tabController: _tabController,
             height: height * 0.26,),
           Padding(
             padding:
-            EdgeInsets.only(top: MediaQuery
-                .of(context)
-                .size
-                .height * 0.220),
+            EdgeInsets.only(top: height * 0.237),
             child: SafeArea(
               child: Container(
                 padding: const EdgeInsets.only(

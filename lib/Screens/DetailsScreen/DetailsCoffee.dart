@@ -5,12 +5,12 @@ import 'package:coffeeshop/Providers/CartProviders.dart';
 import 'package:coffeeshop/Providers/FavroateProviders.dart';
 import 'package:coffeeshop/constants/Constants.dart';
 import 'package:flutter/material.dart';
+import 'package:icons_flutter/icons_flutter.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../../Models/ProductsModel.dart';
 import '../../Widgets/DetailsScreenWidgets/ContainerDetails.dart';
-import '../../Widgets/DetailsScreenWidgets/Defualtappbar.dart';
 
 class DetailsCoffee extends StatelessWidget {
   final Coffee coffee;
@@ -19,27 +19,41 @@ class DetailsCoffee extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery
+        .of(context)
+        .size
+        .width;
+    final height = MediaQuery
+        .of(context)
+        .size
+        .height;
     final getfavor = Provider.of<favor>(context);
     final getcart = Provider.of<cartprovider>(context);
+    ModalRoute.of(context)?.addScopedWillPopCallback(() {
+      // Reset the state when the route is popped (page is closed)
+      getfavor.resetToDefault();
+      getcart.resetToDefault();
+      return Future.value(true); // Allow the route to be popped
+    });
     return Scaffold(
         resizeToAvoidBottomInset: false,
         body: Center(
           child: Stack(children: [
-            Positioned(
-                top: 0,
-                child: defualtappbar(width: width)),
+
+
             Positioned(
               right: 0,
               left: 0,
-              top: 80,
+              top: 0,
               child: Container(
                 width: double.infinity,
-                height: MediaQuery.of(context).size.height * 0.34,
+                height: MediaQuery
+                    .of(context)
+                    .size
+                    .height * 0.45,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                      // ignore: non_constant_identifier_names, avoid_types_as_parameter_names
+                    // ignore: non_constant_identifier_names, avoid_types_as_parameter_names
                       onError: (Object, StackTrace) {
                         LoadingAnimationWidget.discreteCircle(
                           color: Myconstants.darkColor,
@@ -50,6 +64,33 @@ class DetailsCoffee extends StatelessWidget {
                       image: CachedNetworkImageProvider(coffee.imageUrl),
                       fit: BoxFit.cover),
                 ),
+                child: Stack(
+                  children: [
+                    Positioned(
+                        top: 35,
+                        left: 20,
+                        child: GestureDetector(
+                          onTap: (){
+                            Navigator.pop(context);
+                          },
+                          child: Container(
+
+                            width: 40,
+                            height: 40,
+                            decoration: ShapeDecoration(
+                                color:Myconstants.activeColor,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                    side: BorderSide(
+                                        color: Myconstants.darkColor, width: 2)
+                                )
+                            ),
+                            child:  Icon (FlutterIcons.arrow_back_mdi,size: 30,color: Myconstants.darkColor,),
+
+                            ),
+                        ),
+                    )],
+                ),
               ),
             ),
             Positioned(
@@ -57,7 +98,11 @@ class DetailsCoffee extends StatelessWidget {
                 left: 0,
                 bottom: 0,
                 child: SingleChildScrollView(
-                  child: ContainerDetails(width: width, coffee: coffee, getfavor: getfavor, height: height, getcart: getcart),
+                  child: ContainerDetails(width: width,
+                      coffee: coffee,
+                      getfavor: getfavor,
+                      height: height,
+                      getcart: getcart),
                 ))
           ]),
         ));

@@ -17,7 +17,7 @@ class ChocolateCoffee extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          height: MediaQuery.of(context).size.height *0.60,
+          height: height * 0.64,
           width: width,
           child: ListView.builder(
               scrollDirection: Axis.vertical,
@@ -42,7 +42,7 @@ class ChocolateCoffee extends StatelessWidget {
                     },
                     child: Container(
                       width: double.infinity,
-                      height: MediaQuery.of(context).size.height * 0.131,
+                      height: height * 0.131,
                       decoration: ShapeDecoration(
                         color: Myconstants.whiteColor,
                         shape: RoundedRectangleBorder(

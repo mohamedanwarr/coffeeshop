@@ -21,25 +21,29 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final height= MediaQuery.of(context).size.height;
+
     return Scaffold(
       backgroundColor: Myconstants.darkColor,
-      body: Stack(children: [
-        AppBarCart(tabController: _tabController),
-        Padding(
-          padding:
-              EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.210),
-          child: Container(
-            padding: const EdgeInsets.only(
-              right: 10,
-              left: 10,
+      body: SafeArea(
+        child: Stack(children: [
+          AppBarCart(tabController: _tabController),
+          Padding(
+            padding:
+                EdgeInsets.only(top: height * 0.205),
+            child: Container(
+              padding: const EdgeInsets.only(
+                right: 10,
+                left: 10,
+              ),
+              child: TabBarView(controller: _tabController, children: const [
+                RecentlyScreen(),
+                PastOreders()
+              ]),
             ),
-            child: TabBarView(controller: _tabController, children: const [
-              RecentlyScreen(),
-              PastOreders()
-            ]),
-          ),
-        )
-      ]),
+          )
+        ]),
+      ),
     );
   }
 
@@ -55,9 +59,11 @@ class AppBarCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width= MediaQuery.of(context).size.width;
+    final height= MediaQuery.of(context).size.height;
     return Container(
-      width: double.infinity,
-      height: MediaQuery.of(context).size.height * 0.21,
+      width: width,
+      height: height * 0.20,
       decoration: BoxDecoration(
         color: Myconstants.activeColor,
       ),
@@ -65,7 +71,7 @@ class AppBarCart extends StatelessWidget {
         children: [
           Positioned(
               left: 30,
-              top: 40,
+              top: 20,
               child: Icon(
                 FlutterIcons.search_mdi,
                 color: Myconstants.darkColor,
@@ -73,7 +79,7 @@ class AppBarCart extends StatelessWidget {
               )),
           Positioned(
               left: 70,
-              top: 40,
+              top: 20,
               child: Text(
                 'Good day, ',
                 style: TextStyle(
@@ -81,10 +87,10 @@ class AppBarCart extends StatelessWidget {
                     color: Myconstants.darkColor,
                     fontWeight: FontWeight.w400),
               )),
-          const Positioned(right: 20, top: 32, child: PopMenu()),
+          const Positioned(right: 20, top: 15, child: PopMenu()),
           Positioned(
               right: 75,
-              top: 32,
+              top: 15,
               child: Icon(
                 FlutterIcons.ios_notifications_outline_ion,
                 color:Myconstants.darkColor,
@@ -92,7 +98,7 @@ class AppBarCart extends StatelessWidget {
               )),
           Positioned(
               left: 30,
-              top: 90,
+              top: 70,
               child: Text(
                 'Cart ',
                 style: TextStyle(

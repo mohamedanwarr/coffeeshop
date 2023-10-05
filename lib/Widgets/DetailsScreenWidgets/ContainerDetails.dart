@@ -1,5 +1,6 @@
 import 'package:coffeeshop/Widgets/DetailsScreenWidgets/quantityConatiner.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gutter/flutter_gutter.dart';
 import 'package:icons_flutter/icons_flutter.dart';
 
 import '../../Models/ProductsModel.dart';
@@ -177,9 +178,7 @@ class ContainerDetails extends StatelessWidget {
                           ? Myconstants.activeColor
                           : Myconstants.darkColor,
                     ),
-                    const SizedBox(
-                      width: 10,
-                    ),
+                    const Gutter(),
                     SizeCoffee(
                       onTap: () {
                         return getfavor.toggleSelection(1);
@@ -193,9 +192,7 @@ class ContainerDetails extends StatelessWidget {
                           ? Myconstants.activeColor
                           : Myconstants.darkColor,
                     ),
-                    const SizedBox(
-                      width: 10,
-                    ),
+                    const Gutter(),
                     SizeCoffee(
                       onTap: () {
                         return getfavor.toggleSelection(2);
