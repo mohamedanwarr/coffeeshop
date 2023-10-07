@@ -8,20 +8,21 @@ import '../Models/UserModel.dart';
 class LoginandSignup extends ChangeNotifier {
   final auth.FirebaseAuth _firebaseAuth = auth.FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  bool islogin = false;
   bool _isloading = false;
+  bool islogin = false;
   String title = "Enjoy the\ndrink coffee";
 
-  void isLoginSelected(bool showtextfiled) {
-    islogin = false;
-    title = "Welcome\nBack";
+  void isLoginSelected(){
+    islogin = true;
+    title = "Sign up to get \nthe best coffee";
 
     notifyListeners();
   }
 
-  void issignupSelected(bool showtextfiled) {
-    islogin = true;
-    title = "Sign up to get \nthe best coffee";
+  void issignupSelected() {
+    islogin = false;
+    title = "Welcome\nBack";
+
 
     notifyListeners();
   }

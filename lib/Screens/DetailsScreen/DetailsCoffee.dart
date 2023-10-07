@@ -82,7 +82,7 @@ class DetailsCoffee extends StatelessWidget {
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(8),
                                     side: BorderSide(
-                                        color: Myconstants.darkColor, width: 2)
+                                        color: Myconstants.activeColor, width: 2)
                                 )
                             ),
                             child:  Icon (FlutterIcons.arrow_back_mdi,size: 30,color: Myconstants.darkColor,),

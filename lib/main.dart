@@ -12,13 +12,18 @@ import 'Providers/MainScreenProviders.dart';
 import 'Utilies/AppState.dart' show AuthWrapper;
 import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
-
+import 'package:flutter/services.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  // SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack,overlays: [
+  //   SystemUiOverlay.bottom
+  // ]);
+
 
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) => LoginandSignup()),
@@ -28,9 +33,22 @@ void main() async {
   ], child: const CoffeeShop()));
 }
 
-class CoffeeShop extends StatelessWidget {
+class CoffeeShop extends StatefulWidget {
   const CoffeeShop({super.key});
 
+  @override
+  State<CoffeeShop> createState() => _CoffeeShopState();
+}
+
+class _CoffeeShopState extends State<CoffeeShop> {
+  @override
+  void initState() {
+    super.initState();
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [
+      SystemUiOverlay.bottom,
+      SystemUiOverlay.top,
+    ]);
+  }
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {

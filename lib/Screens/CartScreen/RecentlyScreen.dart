@@ -27,127 +27,125 @@ class RecentlyScreen extends StatelessWidget {
     }
     return Column(
       children: [
-        SafeArea(
-          child: SizedBox(
-            height: height * 0.67,
-            width: width,
-            child: ListView.builder(
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                itemCount: quantityMap.length,
-                itemBuilder: (context, index) {
-                  final coffeeItem = quantityMap.keys.elementAt(index);
-                  final quantity = quantityMap[coffeeItem];
-                  return Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 10.0, vertical: 8),
-                    child: Slidable(
-                      endActionPane:
-                          ActionPane(motion: const ScrollMotion(), children: [
-                        SlidableAction(
-                          onPressed: (context) {
-                            cartProvider.removeFromCart(coffeeItem);
-                          },
-                          label: 'Delete',
-                          autoClose: true,
-                          borderRadius: BorderRadius.circular(20),
-                          backgroundColor: Myconstants.activeColor,
-                          foregroundColor: Myconstants.darkColor,
-                          icon: FlutterIcons.delete_ant,
-                        )
-                      ]),
-                      child: GestureDetector(
-                        onTap: () {
-
-                          showMaterialModalBottomSheet(
-
-                            backgroundColor: Colors.transparent,
-                            context: context,
-                            builder: (context) => ProductDetailsDialog(
-                              coffee: coffeeItem,
-                              quantityMap: quantityMap,
-                            ),
-                          );
+        SizedBox(
+          height: height * 0.67,
+          width: width,
+          child: ListView.builder(
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              itemCount: quantityMap.length,
+              itemBuilder: (context, index) {
+                final coffeeItem = quantityMap.keys.elementAt(index);
+                final quantity = quantityMap[coffeeItem];
+                return Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10.0, vertical: 8),
+                  child: Slidable(
+                    endActionPane:
+                        ActionPane(motion: const ScrollMotion(), children: [
+                      SlidableAction(
+                        onPressed: (context) {
+                          cartProvider.removeFromCart(coffeeItem);
                         },
-                        child: Container(
-                          width: double.infinity,
-                          height: height * 0.130,
-                          decoration: ShapeDecoration(
-                            color: Myconstants.whiteColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
+                        label: 'Delete',
+                        autoClose: true,
+                        borderRadius: BorderRadius.circular(20),
+                        backgroundColor: Myconstants.activeColor,
+                        foregroundColor: Myconstants.darkColor,
+                        icon: FlutterIcons.delete_ant,
+                      )
+                    ]),
+                    child: GestureDetector(
+                      onTap: () {
+
+                        showMaterialModalBottomSheet(
+
+                          backgroundColor: Colors.transparent,
+                          context: context,
+                          builder: (context) => ProductDetailsDialog(
+                            coffee: coffeeItem,
+                            quantityMap: quantityMap,
+                          ),
+                        );
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        height: height * 0.130,
+                        decoration: ShapeDecoration(
+                          color: Myconstants.whiteColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        child: Stack(
+                          children: [
+                            Positioned(
+                              left: 20,
+                              top: 20,
+                              child: Text(
+                                coffeeItem.type,
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Myconstants.darkColor,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
                             ),
-                          ),
-                          child: Stack(
-                            children: [
-                              Positioned(
-                                left: 20,
-                                top: 20,
-                                child: Text(
-                                  coffeeItem.type,
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Myconstants.darkColor,
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                            Positioned(
+                              left: 20,
+                              top: 40,
+                              child: Text(
+                                coffeeItem.name,
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Myconstants.darkColor,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
-                              Positioned(
-                                left: 20,
-                                top: 40,
-                                child: Text(
-                                  coffeeItem.name,
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    color: Myconstants.darkColor,
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                            ),
+                            Positioned(
+                              left: 20,
+                              top: 70,
+                              child: Text(
+                                "${quantity}x",
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Myconstants.darkColor,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
-                              Positioned(
-                                left: 20,
-                                top: 70,
-                                child: Text(
-                                  "${quantity}x",
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    color: Myconstants.darkColor,
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                            ),
+                            Positioned(
+                              right: 10,
+                              top: 5,
+                              child: Container(
+                                width: 70,
+                                height: 93,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  image: DecorationImage(
+                                      // ignore: non_constant_identifier_names, avoid_types_as_parameter_names
+                                      onError: (Object, StackTrace) {
+                                        LoadingAnimationWidget.discreteCircle(
+                                          color: Myconstants.darkColor,
+                                          secondRingColor:
+                                              Myconstants.activeColor,
+                                          size: 40,
+                                        );
+                                      },
+                                      image: CachedNetworkImageProvider(
+                                          coffeeItem.imageUrl),
+                                      fit: BoxFit.cover),
                                 ),
                               ),
-                              Positioned(
-                                right: 10,
-                                top: 5,
-                                child: Container(
-                                  width: 70,
-                                  height: 93,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    image: DecorationImage(
-                                        // ignore: non_constant_identifier_names, avoid_types_as_parameter_names
-                                        onError: (Object, StackTrace) {
-                                          LoadingAnimationWidget.discreteCircle(
-                                            color: Myconstants.darkColor,
-                                            secondRingColor:
-                                                Myconstants.activeColor,
-                                            size: 40,
-                                          );
-                                        },
-                                        image: CachedNetworkImageProvider(
-                                            coffeeItem.imageUrl),
-                                        fit: BoxFit.cover),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                  );
-                }),
-          ),
+                  ),
+                );
+              }),
         ),
 
       ],

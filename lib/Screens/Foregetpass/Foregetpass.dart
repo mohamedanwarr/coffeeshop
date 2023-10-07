@@ -43,7 +43,7 @@ class _ForegetpassState extends State<Foregetpass> {
           top: 430,
           left: 20,
           right: 20,
-          child: CustomeTextfiled(
+          child: CustomeTextfiledlogin(
             textlablee: 'Email',
             textInput: TextInputType.emailAddress,
             obscureText: false,

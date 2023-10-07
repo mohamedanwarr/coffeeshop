@@ -1,8 +1,8 @@
 import 'package:coffeeshop/constants/Constants.dart';
 import 'package:flutter/material.dart';
 
-class CustomeTextfiled extends StatelessWidget {
-   CustomeTextfiled({
+class CustomeTextfiledlogin extends StatelessWidget {
+   CustomeTextfiledlogin({
     super.key,
      required this.textlablee, required this.textInput, required this.obscureText,required this.controller, this.validator,
   });

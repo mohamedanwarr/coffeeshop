@@ -41,7 +41,7 @@ class ProductDetailsDialog extends StatelessWidget {
     return SingleChildScrollView(
       child: Container(
         width: width,
-        height: height * 0.89,
+        height: height * 0.93,
         decoration: ShapeDecoration(
           color: Myconstants.activeColor,
           shape: const RoundedRectangleBorder(
@@ -202,7 +202,7 @@ class ProductDetailsDialog extends StatelessWidget {
                             title: Row(
                               children: [
                                 SizedBox(
-                                  width: 165,
+                                  width: width*0.3,
                                   child: Text(
                                     coffee.name,
                                     style: const TextStyle(
@@ -349,7 +349,7 @@ class ProductDetailsDialog extends StatelessWidget {
                     ),
                   )),
             ),
-            const SizedBox(height: 2,),
+            const SizedBox(height: 10,),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: CustomeButton(

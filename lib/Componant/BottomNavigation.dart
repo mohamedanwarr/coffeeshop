@@ -31,7 +31,7 @@ class Bottomnav extends StatelessWidget {
           top: Radius.circular(16),
         ),
         child: WaterDropNavBar(
-          bottomPadding: 15,
+          bottomPadding: 18,
           inactiveIconColor: Myconstants.darkColor,
           waterDropColor: Myconstants.darkColor,
           backgroundColor: Myconstants.activeColor,

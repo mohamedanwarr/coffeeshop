@@ -25,25 +25,23 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
 
     return Scaffold(
       backgroundColor: Myconstants.darkColor,
-      body: SafeArea(
-        child: Stack(children: [
-          AppBarCart(tabController: _tabController),
-          Padding(
-            padding:
-                EdgeInsets.only(top: height * 0.205),
-            child: Container(
-              padding: const EdgeInsets.only(
-                right: 10,
-                left: 10,
-              ),
-              child: TabBarView(controller: _tabController, children: const [
-                RecentlyScreen(),
-                PastOreders()
-              ]),
+      body: Stack(children: [
+        AppBarCart(tabController: _tabController),
+        Padding(
+          padding:
+              EdgeInsets.only(top: height * 0.220),
+          child: Container(
+            padding: const EdgeInsets.only(
+              right: 10,
+              left: 10,
             ),
-          )
-        ]),
-      ),
+            child: TabBarView(controller: _tabController, children: const [
+              RecentlyScreen(),
+              PastOreders()
+            ]),
+          ),
+        )
+      ]),
     );
   }
 
@@ -63,23 +61,23 @@ class AppBarCart extends StatelessWidget {
     final height= MediaQuery.of(context).size.height;
     return Container(
       width: width,
-      height: height * 0.20,
+      height: height * 0.21,
       decoration: BoxDecoration(
         color: Myconstants.activeColor,
       ),
       child: Stack(
         children: [
           Positioned(
-              left: 30,
-              top: 20,
+              left: 20,
+              top: 18,
               child: Icon(
                 FlutterIcons.search_mdi,
                 color: Myconstants.darkColor,
-                size: 30,
+                size: 35,
               )),
           Positioned(
-              left: 70,
-              top: 20,
+              left: 75,
+              top: 22,
               child: Text(
                 'Good day, ',
                 style: TextStyle(

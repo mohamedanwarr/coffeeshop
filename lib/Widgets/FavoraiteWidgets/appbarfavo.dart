@@ -20,16 +20,16 @@ class appbarfave extends StatelessWidget {
       child: Stack(
         children: [
           Positioned(
-              left: 30,
-              top: 40,
+              left: 20,
+              top: 18,
               child: Icon(
                 FlutterIcons.search_mdi,
                 color: Myconstants.darkColor,
-                size: 30,
+                size: 35,
               )),
           Positioned(
-              left: 70,
-              top: 40,
+              left: 75,
+              top: 22,
               child: Text(
                 'Good day, ',
                 style: TextStyle(
@@ -37,10 +37,10 @@ class appbarfave extends StatelessWidget {
                     color: Myconstants.darkColor,
                     fontWeight: FontWeight.w400),
               )),
-          const Positioned(right: 20, top: 32, child: PopMenu()),
+          const Positioned(right: 20, top: 15, child: PopMenu()),
           Positioned(
               right: 75,
-              top: 32,
+              top: 15,
               child: Icon(
                 FlutterIcons.ios_notifications_outline_ion,
                 color:Myconstants.darkColor,

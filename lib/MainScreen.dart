@@ -30,17 +30,10 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     final bottonav = Provider.of<MainScreenProvider>(context);
-    return AnnotatedRegion<SystemUiOverlayStyle>(
-        value: const SystemUiOverlayStyle(
-          //this color must be equal to the WaterDropNavBar backgroundColor
-          systemNavigationBarColor: Colors.transparent,
-          systemNavigationBarIconBrightness: Brightness.dark,
-        ),
-      child: Scaffold(
-          bottomNavigationBar: Bottomnav(bottonav: bottonav),
+    return  Scaffold(
+          bottomNavigationBar: SafeArea(child: Bottomnav(bottonav: bottonav)),
 backgroundColor: Myconstants.activeColor,
-          body: pages[bottonav.pageIndex]),
-    );
+          body: pages[bottonav.pageIndex]);
   }
 }
 

@@ -161,7 +161,7 @@ class ContainerDetails extends StatelessWidget {
             //choose Size
             Positioned(
                 top: 230,
-                left: 50,
+                left: 40,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -208,6 +208,7 @@ class ContainerDetails extends StatelessWidget {
                     ),
                   ],
                 )),
+            const Gutter(),
             //Price
             Positioned(
                 top: 300,

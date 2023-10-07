@@ -23,25 +23,34 @@ class loginandsignup extends StatefulWidget {
 }
 
 class _loginandsignupState extends State<loginandsignup> {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailControllerlogin = TextEditingController();
+  final TextEditingController _passwordControllerlogin =
+      TextEditingController();
+  final TextEditingController _emailControllersignup = TextEditingController();
+  final TextEditingController _passwordControllersignup =
+      TextEditingController();
+  final _formKeylogin = GlobalKey<FormState>();
+  final _formKeysignup = GlobalKey<FormState>();
 
   bool showtextfiled = false;
 
   @override
   void dispose() {
     super.dispose();
-    _emailController.dispose();
-    _passwordController.dispose();
+    _emailControllerlogin.dispose();
+    _passwordControllerlogin.dispose();
+    _emailControllersignup.dispose();
+    _passwordControllersignup.dispose();
   }
 
   void _handlelogin(BuildContext context) async {
     final getmessage = Provider.of<LoginandSignup>(context, listen: false);
+    getmessage.isLoginSelected();
 
-    if (!showtextfiled) {
-      return getmessage.isLoginSelected(showtextfiled = true); //
-    } else if (_formKey.currentState!.validate()) {
+    // Reset the color and text of the other button
+    getmessage.issignupSelected();
+
+    if(_formKeylogin.currentState!.validate()) {
       showDialog(
         context: context,
         builder: (context) {
@@ -67,7 +76,7 @@ class _loginandsignupState extends State<loginandsignup> {
         final authentication =
             Provider.of<LoginandSignup>(context, listen: false);
         final user = await authentication.loginWithEmailAndPassword(
-            _emailController.text, _passwordController.text);
+            _emailControllerlogin.text, _passwordControllerlogin.text);
 
         if (user != null) {
           Future.delayed(const Duration(seconds: 8), () {
@@ -83,15 +92,17 @@ class _loginandsignupState extends State<loginandsignup> {
         SnacBar.showmessage("$e", isuccess: false);
       }
     }
+
   }
 
   void _handelSignup(BuildContext context) async {
     final getmessage = Provider.of<LoginandSignup>(context, listen: false);
+    getmessage.issignupSelected();
 
-    if (!showtextfiled) {
-      // Show text fields when the button is pressed
-      getmessage.issignupSelected(showtextfiled = true);
-    } else if (_formKey.currentState!.validate()) {
+    // Reset the color and text of the other button
+    getmessage.isLoginSelected();
+
+    if ( _formKeysignup.currentState!.validate()){
       showDialog(
         context: context,
         builder: (context) {
@@ -111,7 +122,7 @@ class _loginandsignupState extends State<loginandsignup> {
         final authentication =
             Provider.of<LoginandSignup>(context, listen: false);
         final user = await authentication.createsignupWithEmailAndPassword(
-            _emailController.text, _passwordController.text);
+            _emailControllersignup.text, _passwordControllersignup.text);
 
         if (user != null) {
           Future.delayed(const Duration(seconds: 8), () {
@@ -129,6 +140,8 @@ class _loginandsignupState extends State<loginandsignup> {
         Navigator.pop(context);
         SnacBar.showmessage("$e", isuccess: false);
       }
+
+
     }
   }
 
@@ -162,43 +175,79 @@ class _loginandsignupState extends State<loginandsignup> {
                     left: 20,
                     right: 20,
                     top: 410,
-                    child: Form(
-                      key: _formKey,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CustomeTextfiled(
-                            textlablee: 'Email',
-                            textInput: TextInputType.emailAddress,
-                            obscureText: false,
-                            controller: _emailController,
-                            validator: FormBuilderValidators.compose([
-                              FormBuilderValidators.required(),
-                              FormBuilderValidators.email(),
-                            ]),
-                          ),
-                          const SizedBox(height: 10),
-                          CustomeTextfiled(
-                            textlablee: 'Password',
-                            textInput: const TextInputType.numberWithOptions(),
-                            obscureText: true,
-                            controller: _passwordController,
-                            validator: FormBuilderValidators.compose([
-                              FormBuilderValidators.required(),
-                              FormBuilderValidators.numeric(),
-                              FormBuilderValidators.integer(),
-                              FormBuilderValidators.min(6),
-                            ]),
-                          ),
-                        ],
-                      ),
-                    ))),
+                    child: getmessage.islogin==false
+                        ? Form(
+                            key: _formKeylogin,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                CustomeTextfiledlogin(
+                                  textlablee: 'Enter your email',
+                                  textInput: TextInputType.emailAddress,
+                                  obscureText: false,
+                                  controller: _emailControllerlogin,
+                                  validator: FormBuilderValidators.compose([
+                                    FormBuilderValidators.required(),
+                                    FormBuilderValidators.email(),
+                                  ]),
+                                ),
+                                const SizedBox(height: 10),
+                                CustomeTextfiledlogin(
+                                  textlablee: "Enter Your Password",
+                                  textInput:
+                                      const TextInputType.numberWithOptions(),
+                                  obscureText: true,
+                                  controller: _passwordControllerlogin,
+                                  validator: FormBuilderValidators.compose([
+                                    FormBuilderValidators.required(),
+                                    FormBuilderValidators.numeric(),
+                                    FormBuilderValidators.integer(),
+                                    FormBuilderValidators.min(6),
+                                  ]),
+                                ),
+                              ],
+                            ),
+                          )
+                        : Form(
+                            key: _formKeysignup,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                CustomeTextfiledlogin(
+                                  textlablee: 'Email',
+                                  textInput: TextInputType.emailAddress,
+                                  obscureText: false,
+                                  controller: _emailControllersignup,
+                                  validator: FormBuilderValidators.compose([
+                                    FormBuilderValidators.required(),
+                                    FormBuilderValidators.email(),
+                                  ]),
+                                ),
+                                const SizedBox(height: 10),
+                                CustomeTextfiledlogin(
+                                  textlablee: "Password",
+                                  textInput:
+                                      const TextInputType.numberWithOptions(),
+                                  obscureText: true,
+                                  controller: _passwordControllersignup,
+                                  validator: FormBuilderValidators.compose([
+                                    FormBuilderValidators.required(),
+                                    FormBuilderValidators.numeric(),
+                                    FormBuilderValidators.integer(),
+                                    FormBuilderValidators.min(6),
+                                  ]),
+                                ),
+                              ],
+                            ),
+                          ))),
             Positioned(
               top: 620,
               left: 40,
               right: 40,
               child: GestureDetector(
                 onTap: () {
+
+                  showtextfiled=true;
                   _handlelogin(context);
                 },
                 child: CustomeButton(
@@ -220,6 +269,7 @@ class _loginandsignupState extends State<loginandsignup> {
               right: 40,
               child: GestureDetector(
                 onTap: () {
+                  showtextfiled=true;
                   _handelSignup(context);
                 },
                 child: CustomeButton(

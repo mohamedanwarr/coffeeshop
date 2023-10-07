@@ -40,7 +40,7 @@ class FavoraiteScreen extends StatelessWidget {
           const appbarfave(),
           Padding(
               padding: EdgeInsets.only(
-                  top: height * 0.190),
+                  top: height * 0.220),
               child: SafeArea(
                 child: Container(
                     width: width,
