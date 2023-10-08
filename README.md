@@ -24,7 +24,7 @@ Welcome to the Coffee Shop App project! This Flutter-based application allows us
 
 ## Dependencies
 
-```yaml
+``yaml
 dependencies:
   flutter:
     sdk: flutter
@@ -52,7 +52,10 @@ dev_dependencies:
   cloud_firestore: ^4.9.2
   path_provider: ^2.0.4
 
+## Video 
 
+
+## Images
 ![1coffeeshopapp](https://github.com/mohamedanwarr/coffeeshop/assets/81979968/94bbc1c8-689f-4443-a256-f147bf41095a)
 
 
