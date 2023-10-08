@@ -46,7 +46,7 @@ class _CoffeeShopState extends State<CoffeeShop> {
     super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [
       SystemUiOverlay.bottom,
-      SystemUiOverlay.top,
+
     ]);
   }
   // This widget is the root of your application.
