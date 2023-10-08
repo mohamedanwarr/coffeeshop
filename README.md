@@ -22,6 +22,8 @@ Welcome to the Coffee Shop App project! This Flutter-based application allows us
 
 - **Firebase Integration**: Utilizes Firebase for backend services including authentication and real-time database management.
 
+  ♣️ Provider Statement
+
 ## Dependencies 
 
   icons_flutter: ^0.0.4
